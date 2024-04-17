@@ -8,13 +8,13 @@ from src.nmea_parse import nmea_to_coordinates
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        prog="change_time.py", description="Change system time to GPS time"
+        prog="change_time.py", description="Change system time to the one received from GPS"
     )
 
     position = parser.add_mutually_exclusive_group(required=True)
 
     position.add_argument(
-        "--nemea",
+        "--nmea",
         type=str,
         help="NMEA position string",
     )
@@ -31,8 +31,8 @@ if __name__ == "__main__":
 
     obj = TimezoneFinder()
 
-    if args.nemea:
-        latitude, longitude = nmea_to_coordinates(args.nemea)
+    if args.nmea:
+        latitude, longitude = nmea_to_coordinates(args.nmea)
     else:
         latitude, longitude = args.coordinates
 
